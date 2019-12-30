@@ -1,10 +1,24 @@
 const initState = {
-  todos: [
-    { id: 1, content: "buy some milk" },
-    { id: 2, content: "play mario card" }
-  ]
+  todos: []
 };
 
 export const rootReducer = (state = initState, action) => {
-  return state;
+  let todos;
+  switch (action.type) {
+    case "DELETE_TODO":
+      todos = state.todos.filter(todo => {
+        return todo.id !== action.payload;
+      });
+      return {
+        ...state,
+        todos
+      };
+    case "ADD_TODO":
+      console.log([...state.todos, { id: action.id, content: action.text }]);
+      return {
+        todos: [...state.todos, { id: action.id, content: action.text }]
+      };
+    default:
+      return state;
+  }
 };

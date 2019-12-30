@@ -14,7 +14,6 @@ export const rootReducer = (state = initState, action) => {
         todos
       };
     case "ADD_TODO":
-      console.log([...state.todos, { id: action.id, content: action.text }]);
       return {
         todos: [...state.todos, { id: action.id, content: action.text }]
       };
